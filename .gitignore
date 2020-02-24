@@ -3,3 +3,4 @@ node_modules/
 src/appsscript.json
 src/*.js
 appsscript.json
+Code.js
