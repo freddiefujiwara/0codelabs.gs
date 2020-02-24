@@ -1,0 +1,26 @@
+{
+  "name": "0codelabs.gs",
+  "version": "1.0.0",
+  "description": "Google App Script for 0codelabs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freddiefujiwara/0codelabs.gs.git"
+  },
+  "keywords": [
+    "npm",
+    "gas"
+  ],
+  "author": "Fumikazu Fujiwara <npm@ze.gs> (http://freddiefujiwara.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freddiefujiwara/0codelabs.gs/issues"
+  },
+  "homepage": "https://github.com/freddiefujiwara/0codelabs.gs#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
