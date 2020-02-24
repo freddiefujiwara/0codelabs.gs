@@ -2,3 +2,4 @@
 !*.js
 !appsscript.json
 !src/*.ts
+jest.config.js
