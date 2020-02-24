@@ -1,4 +1,4 @@
-class Spreadsheet {
+class SpreadSheet {
   private spreadSheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
   /**
@@ -30,4 +30,4 @@ class Spreadsheet {
   }
 }
 
-export default Spreadsheet;
+export default SpreadSheet;

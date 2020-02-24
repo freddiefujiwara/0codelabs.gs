@@ -8,6 +8,8 @@
     "lint:fix": "./node_modules/.bin/eslint ./src/**/* ./__tests__/**/* --fix",
     "test": "jest",
     "clasp:create": "npx clasp create --type sheets --rootDir src --title 0codelabs.gs",
+    "clasp:login": "npx clasp login",
+    "clasp:pull": "npx clasp pull",
     "clasp:push": "npx clasp push",
     "clasp:open": "npx clasp open"
   },
