@@ -1,2 +1,4 @@
-jest.config.js
-__tests__/*.ts
+**/**
+!*.js
+!appsscript.json
+!src/*.ts
