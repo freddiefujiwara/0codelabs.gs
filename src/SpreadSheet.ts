@@ -1,5 +1,5 @@
 class SpreadSheet {
-  private spreadSheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
+  private sheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
   /**
    * constructor
