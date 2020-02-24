@@ -2,3 +2,4 @@ node_modules/
 .clasp.json
 src/appsscript.json
 src/*.js
+appsscript.json

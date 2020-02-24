@@ -1,4 +1,4 @@
-import Spreadsheet from '../src/Spreadsheet';
+import SpreadSheet from '../src/SpreadSheet';
 
 // GAS Mock
 SpreadsheetApp.openById = jest.fn(() => ({
@@ -27,11 +27,11 @@ SpreadsheetApp.getActiveSheet = jest.fn(() => ({
 
 describe('SpreadSheet', () => {
   it('can be transpiled as ret', () => {
-    const spreadSheetWithId = new Spreadsheet('ssid', 'ssName');
+    const spreadSheetWithId = new SpreadSheet('ssid', 'ssName');
     let ret = spreadSheetWithId.lastRow();
     expect(ret.A1).toBe('A3');
     expect(ret.B1).toBe('B3');
-    const spreadSheetWithoutId = new Spreadsheet();
+    const spreadSheetWithoutId = new SpreadSheet();
     ret = spreadSheetWithoutId.lastRow();
     expect(ret.A1).toBe('A4');
     expect(ret.B1).toBe('B4');
