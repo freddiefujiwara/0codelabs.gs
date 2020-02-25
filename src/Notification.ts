@@ -5,7 +5,7 @@ class Notification {
    * @param title:string? event title
    */
   public static email(to:string, subject:string, body:string, option?:any) {
-    GmailApp.sendEmail(to,subject,body,option);
+    GmailApp.sendEmail(to, subject, body, option);
   }
 }
 

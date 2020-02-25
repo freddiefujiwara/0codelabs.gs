@@ -6,6 +6,6 @@ GmailApp.sendEmail = jest.fn(() => ({
 
 describe('Notification', () => {
   it('can send a email', () => {
-    Notification.email('to@domain.com','subject','body');
+    Notification.email('to@domain.com', 'subject', 'body');
   });
 });
