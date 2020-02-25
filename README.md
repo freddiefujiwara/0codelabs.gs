@@ -49,6 +49,7 @@ function myFunction() {
   start.setMinutes(lr["開始時刻(分)"]);
   var duration = lr["コース"].match(/\((\d+)/)
   var end = new Date(start.getTime() + duration[1]*60000);
+  Notification.email("ff@ze.gs",lr["お名前"]+"様 - "+lr["コース"],JSON.stringify(lr));
   cal.event(lr["お名前"]+"様 - "+lr["コース"],start,end,{"description":lr});
 }
 ```
