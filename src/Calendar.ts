@@ -15,11 +15,22 @@ class Calendar {
 
   /**
    * event
-   * @param title:string? event title
-   * @param title:string? event title
+   * @param title:string event title
+   * @param start:Date event starts at
+   * @param end:Date event ends at
+   * @param option?:any
    */
   public event(title:string, start:Date, end:Data, option?:any) {
     this.calendar.createEvent(title, start, end, option);
+  }
+
+  /**
+   * duplication
+   * @param start:Date event starts at
+   * @param end:Date event ends at
+   */
+  public duplication(start:Date, end:Data) {
+    return this.calendar.getEvents(start, end).length !== 0;
   }
 }
 
