@@ -12,7 +12,7 @@ CalendarApp.getCalendarById = jest.fn(() => ({
   createEvent: jest.fn(() => ({
   })),
   getEvents: jest.fn(() => [
-    1,2,3,4
+    1, 2, 3, 4,
   ]),
 })) as any;
 
@@ -24,7 +24,7 @@ describe('Calendar', () => {
   it('can check event duplication', () => {
     let calendar = new Calendar();
     expect(calendar.duplication(new Date(), new Date())).toBe(false);
-    let calendar = new Calendar('ssid');
+    calendar = new Calendar('ssid');
     expect(calendar.duplication(new Date(), new Date())).toBe(true);
   });
 });
