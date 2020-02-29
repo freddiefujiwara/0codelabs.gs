@@ -1,4 +1,4 @@
-import SpreadSheet from '../src/SpreadSheet';
+import FormData from '../src/FormData';
 
 // GAS Mock
 SpreadsheetApp.openById = jest.fn(() => ({
@@ -25,14 +25,14 @@ SpreadsheetApp.getActiveSheet = jest.fn(() => ({
   })),
 })) as any;
 
-describe('SpreadSheet', () => {
+describe('FormData', () => {
   it('can be transpiled as ret', () => {
-    const spreadSheetWithId = new SpreadSheet('ssid', 'ssName');
-    let ret = spreadSheetWithId.lastRow();
+    const spreadSheetWithId = new FormData('ssid', 'ssName');
+    let ret = spreadSheetWithId.last();
     expect(ret.A1).toBe('A3');
     expect(ret.B1).toBe('B3');
-    const spreadSheetWithoutId = new SpreadSheet();
-    ret = spreadSheetWithoutId.lastRow();
+    const spreadSheetWithoutId = new FormData();
+    ret = spreadSheetWithoutId.last();
     expect(ret.A1).toBe('A4');
     expect(ret.B1).toBe('B4');
     expect(ret.C1).toBe('C4');
