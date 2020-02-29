@@ -1,9 +1,13 @@
 class Notification {
     public templateConf: { [s: string]: {[key:string] }};
 
+    public id:string;
+
     public subject:string;
 
     public template:string;
+
+    public body:string;
 
     /**
     * constructor
@@ -45,6 +49,21 @@ class Notification {
       const doc = DocumentApp.openById(id);
       this.subject = doc.getName();
       this.template = doc.getBody().getText();
+      this.id = id;
+    }
+
+    /**
+    * compile
+    */
+    public compile(opt?:{[k:string]:string}) {
+      let option = this.templateConf[this.id];
+      if (opt) {
+        option = { ...this.templateConf[this.id], ...opt };
+      }
+      this.body = this.template;
+      Object.keys(option).forEach((k) => {
+        this.body = this.body.replace(new RegExp(`{%\\s*${k}\\s*%}`, 'g'), option[k]);
+      });
     }
 
     /**

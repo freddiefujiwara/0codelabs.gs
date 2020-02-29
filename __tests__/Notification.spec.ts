@@ -13,7 +13,13 @@ describe('Notification', () => {
     expect(nf.template).toBeUndefined();
     nf.prepare('A2');
     expect(nf.subject).toBe('Email title');
-    expect(nf.template.split('\n').length).toBe(3);
+    expect(nf.template.split('\n').length).toBe(4);
+  });
+  it('can compile the template', () => {
+    const nf = new Notification();
+    nf.prepare('A2');
+    nf.compile({A1:'freddie'});
+    expect(nf.body.split('\n').length).toBe(4);
   });
   it('can send a email', () => {
     Notification.email('to@domain.com', 'subject', 'body');
@@ -37,9 +43,10 @@ SpreadsheetApp.getActiveSheet = jest.fn(() => ({
 DocumentApp.openById = jest.fn(() => ({
   getBody: jest.fn(() => ({
     getText: jest.fn(() => [
-      'body line 1:{% A2 %}',
-      'body line 2:{% B2 %}',
-      'body line 3:{% C2 %}'].join('\n')),
+      'body line 1:{%A1 %}',
+      'body line 2:{% B1  %}',
+      'body line 3:{% B1%}',
+      'body line 4:{%C1%}'].join('\n')),
   })),
   getName: jest.fn(() => 'Email title'),
 })) as any;
