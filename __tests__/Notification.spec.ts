@@ -8,9 +8,12 @@ describe('Notification', () => {
   });
   it('can prepare the template', () => {
     const nf = new Notification();
+    nf.prepare('Z2');
+    expect(nf.subject).toBeUndefined();
+    expect(nf.template).toBeUndefined();
     nf.prepare('A2');
     expect(nf.subject).toBe('Email title');
-    expect(nf.template.split("\n").length).toBe(3);
+    expect(nf.template.split('\n').length).toBe(3);
   });
   it('can send a email', () => {
     Notification.email('to@domain.com', 'subject', 'body');
