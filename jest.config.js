@@ -63,6 +63,7 @@ module.exports = {
       diagnostics: false,
     },
     SpreadsheetApp: {},
+    DocumentApp: {},
     CalendarApp: {},
     GmailApp: {},
   },
