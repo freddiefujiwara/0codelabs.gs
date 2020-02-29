@@ -1,5 +1,19 @@
 import FormData from '../src/FormData';
 
+describe('FormData', () => {
+  it('can be transpiled as ret', () => {
+    const spreadSheetWithId = new FormData('ssid', 'ssName');
+    let ret = spreadSheetWithId.last();
+    expect(ret.A1).toBe('A3');
+    expect(ret.B1).toBe('B3');
+    const spreadSheetWithoutId = new FormData();
+    ret = spreadSheetWithoutId.last();
+    expect(ret.A1).toBe('A4');
+    expect(ret.B1).toBe('B4');
+    expect(ret.C1).toBe('C4');
+  });
+});
+
 // GAS Mock
 SpreadsheetApp.openById = jest.fn(() => ({
   getSheetByName: jest.fn(() => ({
@@ -24,17 +38,3 @@ SpreadsheetApp.getActiveSheet = jest.fn(() => ({
     getLastRow: jest.fn(() => 4),
   })),
 })) as any;
-
-describe('FormData', () => {
-  it('can be transpiled as ret', () => {
-    const spreadSheetWithId = new FormData('ssid', 'ssName');
-    let ret = spreadSheetWithId.last();
-    expect(ret.A1).toBe('A3');
-    expect(ret.B1).toBe('B3');
-    const spreadSheetWithoutId = new FormData();
-    ret = spreadSheetWithoutId.last();
-    expect(ret.A1).toBe('A4');
-    expect(ret.B1).toBe('B4');
-    expect(ret.C1).toBe('C4');
-  });
-});
