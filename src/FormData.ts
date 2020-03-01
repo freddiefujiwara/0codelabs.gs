@@ -16,17 +16,19 @@ class FormData {
     } else {
       this.sheet = SpreadsheetApp.getActiveSheet();
     }
-    this.getTarget();
   }
 
   /**
    * getTarget
    */
-  public getTarget(): {[key: string]: any} {
+  public getTarget(row?:integer): {[key: string]: any} {
     const range = this.sheet.getDataRange();
     const values = range.getValues();
     const headers = values.shift();
     this.targetRow = range.getLastRow();
+    if (row) {
+      this.targetRow = row;
+    }
     const targetValues = values[this.targetRow - 2];
     const ret = {};
     headers.forEach((header, i) => {
@@ -53,7 +55,7 @@ class FormData {
    * accept
    */
   public accept() {
-    this.sheet.getRange(this.targetRow, 1).setBackground('white');
+    this.sheet.getRange(this.targetRow, 1).setBackground('green');
   }
 }
 

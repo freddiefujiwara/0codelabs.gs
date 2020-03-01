@@ -39,12 +39,14 @@ $ npm run test
 
 ## Sample
 
+### Form code
+
 ```javascript
 function myFunction() {
   var ss  = new FormData("form response","Form Responses 1");
   var nf = new Notification("template config","Sheet1");
   var bk = new Booking("xxx@group.calendar.google.com");
-  
+  ss.getTarget();
   var lr  = ss.target;
   
   var start = new Date(lr["お日にち"]);
@@ -61,6 +63,24 @@ function myFunction() {
   bk.book(lr["コース"],start,end);
   nf.email(lr["Email Address"],"suspend",lr);
   ss.suspend();
+}
+```
+### Spread Sheet code
+
+```javascript
+function myFunction(e) {
+  var ss  = new FormData("form response","Form Responses 1");
+  var nf = new Notification("template config","Sheet1");
+  
+  if(!e || e.changeType !== "FORMAT" || 
+     e.source.getActiveRange().getColumn() !== 1 || 
+    e.source.getActiveRange().getBackground() !== '#ffffff' ){
+      return;
+  }
+  ss.getTarget(e.source.getActiveRange().getRow());
+  var lr = ss.target;
+  ss.accept();
+  nf.email(lr["Email Address"],"accept",lr);
 }
 ```
 
