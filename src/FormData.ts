@@ -1,9 +1,9 @@
 class FormData {
   private sheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
-  public target: {[k:string]:string};
+  private target: {[k:string]:string};
 
-  public targetRow: integer;
+  private targetRow: integer;
 
   /**
    * constructor
@@ -35,6 +35,7 @@ class FormData {
       ret[String(header)] = targetValues[i];
     });
     this.target = ret;
+    return this.target;
   }
 
   /**

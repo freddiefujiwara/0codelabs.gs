@@ -46,8 +46,7 @@ function myFunction() {
   var ss  = new FormData("form response","Form Responses 1");
   var nf = new Notification("template config","Sheet1");
   var bk = new Booking("xxx@group.calendar.google.com");
-  ss.getTarget();
-  var lr  = ss.target;
+  var lr  = ss.getTarget();
   
   var start = new Date(lr["お日にち"]);
   start.setHours(lr["開始時刻（時）"]);
@@ -77,8 +76,7 @@ function myFunction(e) {
     e.source.getActiveRange().getBackground() !== '#ffffff' ){
       return;
   }
-  ss.getTarget(e.source.getActiveRange().getRow());
-  var lr = ss.target;
+  var lr = ss.getTarget(e.source.getActiveRange().getRow());
   ss.accept();
   nf.email(lr["Email Address"],"accept",lr);
 }
