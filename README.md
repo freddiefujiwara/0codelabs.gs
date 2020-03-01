@@ -39,18 +39,46 @@ $ npm run test
 
 ## Sample
 
+### Form code
+
 ```javascript
 function myFunction() {
   var ss  = new FormData("form response","Form Responses 1");
-  var lr  = ss.last();
-  var cal = new Calendar("xxx@group.calendar.google.com");
+  var nf = new Notification("template config","Sheet1");
+  var bk = new Booking("xxx@group.calendar.google.com");
+  var lr  = ss.getTarget();
+  
   var start = new Date(lr["お日にち"]);
-  start.setHours(lr["開始時刻(時)"]);
-  start.setMinutes(lr["開始時刻(分)"]);
+  start.setHours(lr["開始時刻（時）"]);
+  start.setMinutes(lr["開始時刻（分）"]);
   var duration = lr["コース"].match(/\((\d+)/)
   var end = new Date(start.getTime() + duration[1]*60000);
+  
+  if(bk.duplication(start,end)){
+    nf.email(lr["Email Address"],"reject",lr);
+    ss.reject();
+    return;
+  }
+  bk.book(lr["コース"],start,end);
+  nf.email(lr["Email Address"],"suspend",lr);
+  ss.suspend();
+}
+```
+### Spread Sheet code
+
+```javascript
+function myFunction(e) {
+  var ss  = new FormData("form response","Form Responses 1");
   var nf = new Notification("template config","Sheet1");
-  nf.email(lr["Email Address"],"target template",lr);
+  
+  if(!e || e.changeType !== "FORMAT" || 
+     e.source.getActiveRange().getColumn() !== 1 || 
+    e.source.getActiveRange().getBackground() !== '#ffffff' ){
+      return;
+  }
+  var lr = ss.getTarget(e.source.getActiveRange().getRow());
+  ss.accept();
+  nf.email(lr["Email Address"],"accept",lr);
 }
 ```
 
