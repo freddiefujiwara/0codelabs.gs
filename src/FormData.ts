@@ -1,4 +1,4 @@
-class SpreadSheet {
+class FormData {
   private sheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
   /**
@@ -30,4 +30,4 @@ class SpreadSheet {
   }
 }
 
-export default SpreadSheet;
+export default FormData;
