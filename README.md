@@ -41,16 +41,16 @@ $ npm run test
 
 ```javascript
 function myFunction() {
-  var ss  = new SpreadSheet();
-  var lr  = ss.lastRow();
-  var cal = new Calendar()
+  var ss  = new FormData("form response","Form Responses 1");
+  var lr  = ss.last();
+  var cal = new Calendar("xxx@group.calendar.google.com");
   var start = new Date(lr["お日にち"]);
   start.setHours(lr["開始時刻(時)"]);
   start.setMinutes(lr["開始時刻(分)"]);
   var duration = lr["コース"].match(/\((\d+)/)
   var end = new Date(start.getTime() + duration[1]*60000);
-  Notification.email("ff@ze.gs",lr["お名前"]+"様 - "+lr["コース"],JSON.stringify(lr));
-  cal.event(lr["お名前"]+"様 - "+lr["コース"],start,end,{"description":lr});
+  var nf = new Notification("template config","Sheet1");
+  nf.email(lr["Email Address"],"target template",lr);
 }
 ```
 

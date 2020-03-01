@@ -1,4 +1,4 @@
-class SpreadSheet {
+class FormData {
   private sheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
   /**
@@ -15,9 +15,9 @@ class SpreadSheet {
   }
 
   /**
-   * lastRow
+   * last
    */
-  public lastRow(): {[key: string]: any} {
+  public last(): {[key: string]: any} {
     const range = this.sheet.getDataRange();
     const values = range.getValues();
     const headers = values.shift();
@@ -30,4 +30,4 @@ class SpreadSheet {
   }
 }
 
-export default SpreadSheet;
+export default FormData;
