@@ -1,4 +1,4 @@
-class Calendar {
+class Booking {
   private calendar: GoogleAppsScript.Calendar.Calendar;
 
   /**
@@ -14,13 +14,13 @@ class Calendar {
   }
 
   /**
-   * event
+   * book
    * @param title:string event title
    * @param start:Date event starts at
    * @param end:Date event ends at
    * @param option?:any
    */
-  public event(title:string, start:Date, end:Data, option?:any) {
+  public book(title:string, start:Date, end:Date, option?:any) {
     this.calendar.createEvent(title, start, end, option);
   }
 
@@ -29,9 +29,9 @@ class Calendar {
    * @param start:Date event starts at
    * @param end:Date event ends at
    */
-  public duplication(start:Date, end:Data) {
+  public duplication(start:Date, end:Date) {
     return this.calendar.getEvents(start, end).length !== 0;
   }
 }
 
-export default Calendar;
+export default Booking;

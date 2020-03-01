@@ -1,4 +1,4 @@
-import Calendar from '../src/Calendar';
+import Booking from '../src/Booking';
 
 // GAS Mock
 CalendarApp.getDefaultCalendar = jest.fn(() => ({
@@ -16,15 +16,15 @@ CalendarApp.getCalendarById = jest.fn(() => ({
   ]),
 })) as any;
 
-describe('Calendar', () => {
+describe('Booking', () => {
   it('can create an Event', () => {
-    const calendar = new Calendar('ssid');
-    calendar.event('title', new Date(), new Date());
+    const calendar = new Booking('ssid');
+    calendar.book('title', new Date(), new Date());
   });
   it('can check event duplication', () => {
-    let calendar = new Calendar();
+    let calendar = new Booking();
     expect(calendar.duplication(new Date(), new Date())).toBe(false);
-    calendar = new Calendar('ssid');
+    calendar = new Booking('ssid');
     expect(calendar.duplication(new Date(), new Date())).toBe(true);
   });
 });

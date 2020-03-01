@@ -1,6 +1,10 @@
 class FormData {
   private sheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
+  public target: {[k:string]:string};
+
+  public targetRow: integer;
+
   /**
    * constructor
    * @param id:string? sheet ID
@@ -12,21 +16,44 @@ class FormData {
     } else {
       this.sheet = SpreadsheetApp.getActiveSheet();
     }
+    this.getTarget();
   }
 
   /**
-   * last
+   * getTarget
    */
-  public last(): {[key: string]: any} {
+  public getTarget(): {[key: string]: any} {
     const range = this.sheet.getDataRange();
     const values = range.getValues();
     const headers = values.shift();
-    const lastValues = values[range.getLastRow() - 2];
+    this.targetRow = range.getLastRow();
+    const targetValues = values[this.targetRow - 2];
     const ret = {};
     headers.forEach((header, i) => {
-      ret[String(header)] = lastValues[i];
+      ret[String(header)] = targetValues[i];
     });
-    return ret;
+    this.target = ret;
+  }
+
+  /**
+   * suspend
+   */
+  public suspend() {
+    this.sheet.getRange(this.targetRow, 1).setBackground('red');
+  }
+
+  /**
+   * reject
+   */
+  public reject() {
+    this.sheet.getRange(this.targetRow, 1).setBackground('gray');
+  }
+
+  /**
+   * accept
+   */
+  public accept() {
+    this.sheet.getRange(this.targetRow, 1).setBackground('white');
   }
 }
 
