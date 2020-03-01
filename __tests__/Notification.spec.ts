@@ -22,7 +22,10 @@ describe('Notification', () => {
     expect(nf.body.split('\n').length).toBe(4);
   });
   it('can send a email', () => {
-    Notification.email('to@domain.com', 'subject', 'body');
+    const nf = new Notification();
+    nf.prepare('A2');
+    nf.compile({ A1: 'freddie' });
+    nf.email('to@domain.com');
   });
 });
 

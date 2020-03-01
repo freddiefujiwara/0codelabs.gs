@@ -56,6 +56,9 @@ class Notification {
     * compile
     */
     public compile(opt?:{[k:string]:string}) {
+      if (!(this.subject && this.template && this.id)) {
+        return;
+      }
       let option = this.templateConf[this.id];
       if (opt) {
         option = { ...this.templateConf[this.id], ...opt };
@@ -69,12 +72,15 @@ class Notification {
     /**
     * email
     * @param to:string      email to
-    * @param subject:string email subject
-    * @param body:string    email body
-    * @param option?:any
+    * @param id:string      email subject
+    * @param opt?:any
     */
-    public static email(to:string, subject:string, body:string, option?:any) {
-      GmailApp.sendEmail(to, subject, body, option);
+    public email(to:string, id:string, opt:any) {
+      this.prepare(id);
+      this.compile(opt);
+      if (this.subject && this.template && this.id) {
+        GmailApp.sendEmail(to, this.subject, this.body);
+      }
     }
 }
 
